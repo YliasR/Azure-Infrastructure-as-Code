@@ -39,3 +39,11 @@ before we push our image we need to tag it with the full name of the registry, t
 
 tag the image: ```docker tag aziac oefaziac.azurecr.io/aziac:v1```
 ###### don't forget to use your own chosen names which could be different from mine
+then push: ``` docker push oefaziac.azurecr.io/aziac:v1 ```
+![docker push](https://i.imgur.com/PwWmPwu.png)
+you can verify that the image was pushed to the right registery using this command ``` az acr repository list --name aziac --output table```
+
+after completing these steps, we can move on to deploying the image!
+
+
+### Deploying an image to azure container instances
