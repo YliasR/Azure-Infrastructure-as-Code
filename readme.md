@@ -1,6 +1,6 @@
 # Azure Infrastructure as Code
 
-## Diagram
+
 
 ## Step by step guide:
 
@@ -61,11 +61,5 @@ Before deploying we need to create a bicep file, the bicep file contains the ins
 
 
 Deploy with this command, note the logs workspace id, this is the id that you were given when creating your log analytics workspace.
-``` az deployment group create
-  --resource-group AzureIac
-  --template-file main.bicep
-  --parameters namePrefix="aziac"
-               containerImage="oefaziac.azurecr.io/aziac:v1"
-               dnsLabel="aziacaci"
-               logAnalyticsWorkspaceId="/subscriptions/b2de44bd-8504-46c5-b276-9456e84949a7/resourceGroups/AzureIac/providers/Microsoft.OperationalInsights/workspaces/aziaclog"
+```   az deployment group create --resource-group AzureIac --template-file main.bicep --parameters registryPassword="YOUR PASSWORD"                                       
  ```
