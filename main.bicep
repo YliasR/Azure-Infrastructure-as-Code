@@ -1,5 +1,5 @@
-@description('Prefix for resource names (e.g., "oef")')
-param namePrefix string = 'oef' 
+@description('Prefix for resource names (e.g., "aziac")')
+param namePrefix string = 'aziac' 
 
 @description('Location for all resources (should match the resource group location)')
 param location string = resourceGroup().location
@@ -78,10 +78,10 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2021-09-01'
           resources: {
             requests: {
               cpu: 1
-              memoryInGb: 2
+              memoryInGB: 2
             }
           }
-          // Add environmentVariables if needed
+         
         }
       }
     ]
@@ -105,7 +105,8 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2021-09-01'
     // Configure diagnostics to send logs to Azure Monitor
     diagnostics: {
       logAnalytics: {
-        workspaceResourceId: logAnalyticsWorkspaceId
+        workspaceId: logAnalyticsWorkspaceId
+        workspaceKey: listKeys(logAnalyticsWorkspaceId, '2020-03-01-preview').primarySharedKey
       }
     }
   }

@@ -47,3 +47,25 @@ after completing these steps, we can move on to deploying the image!
 
 
 ### Deploying an image to azure container instances
+
+#### Logs
+first lets create a log analytics workspace, by running
+```az monitor log-analytics workspace create --resource-group AzureIac --workspace-name aziaclog --location eastus --sku PerGB2018```
+this creates the workspace inside our resource group.
+![logs](https://i.imgur.com/4s3ZL0S.png)
+in the output you will se an "id" we need this for the deployment command.
+
+Before deploying we need to create a bicep file, the bicep file contains the instructions to create the container instance, the subnet, and the network security group.
+##### (see main.bicep file inside the repository )
+
+
+
+Deploy with this command, note the logs workspace id, this is the id that you were given when creating your log analytics workspace.
+``` az deployment group create
+  --resource-group AzureIac
+  --template-file main.bicep
+  --parameters namePrefix="aziac"
+               containerImage="oefaziac.azurecr.io/aziac:v1"
+               dnsLabel="aziacaci"
+               logAnalyticsWorkspaceId="/subscriptions/b2de44bd-8504-46c5-b276-9456e84949a7/resourceGroups/AzureIac/providers/Microsoft.OperationalInsights/workspaces/aziaclog"
+ ```
