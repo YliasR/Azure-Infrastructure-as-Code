@@ -61,5 +61,5 @@ Before deploying we need to create a bicep file, the bicep file contains the ins
 
 
 Deploy with this command, note the logs workspace id, this is the id that you were given when creating your log analytics workspace.
-```   az deployment group create --resource-group AzureIac --template-file main.bicep --parameters registryPassword="YOUR PASSWORD"                                       
- ```
+``` az deployment group create --resource-group AzureIac --template-file main.bicep --parameters registryPassword="YOUR PASSWORD" ```
+to get your password use: ```  az acr credential show --name oefaziac --query "{username: username, password: passwords[0].value}" --output json ```
