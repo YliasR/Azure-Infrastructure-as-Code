@@ -63,3 +63,11 @@ Before deploying we need to create a bicep file, the bicep file contains the ins
 Deploy with this command, note the logs workspace id, this is the id that you were given when creating your log analytics workspace.
 ``` az deployment group create --resource-group AzureIac --template-file main.bicep --parameters registryPassword="YOUR PASSWORD" ```
 to get your password use: ```  az acr credential show --name oefaziac --query "{username: username, password: passwords[0].value}" --output json ```
+
+Below is a small snipet of the output form the deployment command:
+![deploy](https://i.imgur.com/qTngnO4.png)
+
+Now to find your public IP go to MS Azure and search for "application gateways"
+![appgateway](https://i.imgur.com/7aIbQLq.png)
+inside it youll see the gateway that was made with the bicep file, it should also show the public ip in the list. 
+![pubip](https://i.imgur.com/XBheHfv.png)
